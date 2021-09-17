@@ -1,6 +1,6 @@
 # Block_me
-Multiplayer game made with Love and C
-
+![alt text](https://github.com/Kyr-M/Block_me/blob/master/logo.png)
+# Multiplayer game made with Love and C
 # Gameplay:
 To win the game the player must cross to other side of the grid, 
 * If the player is on the top of the grid he must cross the grid and go to the bottom, and vise versa. 
