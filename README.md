@@ -1,4 +1,3 @@
-# Block_me
 ![alt text](https://github.com/Kyr-M/Block_me/blob/master/logo.png)
 # Multiplayer game made with Love and C
 # Gameplay:
