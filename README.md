@@ -19,7 +19,7 @@ To win the game the player must cross to other side of the grid,
 * the player have 2 options 
   1. To move : the player can move to a square of the grid the player can go up-down-left-right only. To move the player he must put a letter and then a number of the grid
   for example e9
-  2. To put an obstacles : wwith that choice the player can put an obstacle to mess with other players and block their way, The player have 5 block (obstacles) to use in total.
+  2. To put an obstacles : with that choice the player can put an obstacle to mess with other players and block their way, The player have 5 block (obstacles) to use in total.
   To put an obstacle on grid the player must give 2 coordinates, in this case he must put a letter first then a number and again letter and number (letter-number-letter-number)
   for example e5e6
   
