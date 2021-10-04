@@ -133,14 +133,14 @@ int main(void)
         							printf("with blocks for 2 players 10x10\n");
         							nowPlays = 0;
 						            while(1){
-                                      start_game_default(&the_player[0]);
-			                          start_game_default(&the_player[1]);
-																							
-                                      malloc_state = initialise_game(the_player, &display);
-																							
-                                      place_player_1(&the_player[0], &display);
+							      start_game_default(&the_player[0]);
+									  start_game_default(&the_player[1]);
+
+							      malloc_state = initialise_game(the_player, &display);
+
+							      place_player_1(&the_player[0], &display);
 						              place_player_2(&the_player[1], &display);
-				                      place_blokcs(&display);
+				                      	      place_blokcs(&display);
 						              if(malloc_state < 0){
 						                printf("\n\nNot enough memory.\n\n");
 					                    break;
@@ -158,15 +158,15 @@ int main(void)
 		  		                       return 1;
 				                      }
 				                      if (state != WRONG){
-	                                    nowPlays = (nowPlays+1) % (2 * choice_players);
-		                              }
-				                      if (state == EXIT) {
-				                        for(i = 0; i < display.n; i++){
-						                    free(display.grid_space[i]);
-						                }
-						                free(display.grid_space);
-		  		                      return 1;
-	                                 }
+						    nowPlays = (nowPlays+1) % (2 * choice_players);
+						      }
+							      if (state == EXIT) {
+								for(i = 0; i < display.n; i++){
+									    free(display.grid_space[i]);
+									}
+									free(display.grid_space);
+							      return 1;
+						 }
 						        } while((WINNER != 1) && (EXIT != -2));//As long as the player hasn't  quit (1) the game and did not win
 						        if(state == EXIT)//Player quit the game
       						    {
@@ -180,16 +180,16 @@ int main(void)
 						       printf("without blocks for 2 players 10x10\n");
 				               nowPlays = 0;
 				               while(1){
-			                     start_game_default(&the_player[0]);
-                                 start_game_default(&the_player[1]);
-																							
-                                 malloc_state = initialise_game(the_player, &display);
-																							
-			                     place_player_1(&the_player[0], &display);
-						         place_player_2(&the_player[1], &display);
+			                         start_game_default(&the_player[0]);
+						 start_game_default(&the_player[1]);
+
+						 malloc_state = initialise_game(the_player, &display);
+
+							     place_player_1(&the_player[0], &display);
+									 place_player_2(&the_player[1], &display);
 				                 if(malloc_state < 0){
-	                               printf("\n\nNot enough memory.\n\n");
-                                   break;
+	                                         printf("\n\nNot enough memory.\n\n");
+                                                break;
                                  }
                                  do{
                                   display_grid(&display);
@@ -205,14 +205,14 @@ int main(void)
                                   }
 						          if (state != WRONG){
 						          nowPlays = (nowPlays+1) % (2 * choice_players);
-                                  }
+                                 			  }
 						          if (state == EXIT){
 						           for(i = 0; i < display.n; i++){
-				                    free(display.grid_space[i]);
-                                    }
+				                    		free(display.grid_space[i]);
+                                    			}
 					               free(display.grid_space);
 			  	                   return 1;
-                                   }
+                                  		 }
                                   } while((WINNER != 1) && (EXIT != -2));//As long as the player hasn't  quit (1) the game and did not win
                                   if(state == EXIT){//Player quit the game
                                    printf("Player %s game over \n\n", the_player[nowPlays].name);
@@ -223,9 +223,9 @@ int main(void)
 						        }
 				              }
 						}while(blocks != 0);
-                       break;
+                       			break;
 				   }
-                   case 2:{
+                   		case 2:{
 				        symbol[0] = '#';
    				        symbol[1] = '*';
         				symbol[2] = '@';
@@ -262,7 +262,7 @@ int main(void)
 							place_player_4(&the_player[3], &display);
 							place_blokcs(&display);
 							if(malloc_state < 0){
-                              printf("\n\nNot enough memory.\n\n");
+                             				 printf("\n\nNot enough memory.\n\n");
 							  break;
 							}
 							do{
@@ -403,8 +403,8 @@ int main(void)
 					 state = make_move(&(the_player[nowPlays]), &display, symbol[nowPlays], players_blocks[nowPlays]);
 			  	     if (state == BLOCK_OK) players_blocks[nowPlays]--;
 			  	     if (state == CORRECT && checkWinner(display, symbol[nowPlays], the_player[nowPlays])){
-                       printf("Winner %s\n", the_player[nowPlays].name);
-                       for(i = 0; i < display.n; i++){
+                       			printf("Winner %s\n", the_player[nowPlays].name);
+                      			 for(i = 0; i < display.n; i++){
 					     free(display.grid_space[i]);
 						}
 					   free(display.grid_space);
