@@ -75,154 +75,154 @@ int main(void)
 	printf("   | | | | | |___) |\n");
 	printf("   |_| |_| |_|____/ \n");
 	do{
-	   printf("MENU\n");
-        printf("=====================\n");
-        printf("1. play\n");
-        printf("0. EXIT\n");
-        printf("=====================\n");
-        printf("GIVE A CHOICE:");
-        scanf("%d",&choice);
-        printf("\n\n\n");
+	  printf("MENU\n");
+          printf("=====================\n");
+          printf("1. play\n");
+          printf("0. EXIT\n");
+          printf("=====================\n");
+          printf("GIVE A CHOICE:");
+          scanf("%d",&choice);
+          printf("\n\n\n");
         switch(choice)
         {
          case 1:{
 	          do{
-				printf("	MENU\n");
-                printf("=====================\n");
-                printf("1. DEFAULT GRID 10x10\n");
-                printf("2. CUSTOM GRID\n");
-                printf("0. EXIT\n");
-                printf("=====================\n");
-                printf("GIVE A CHOICE:");
-                scanf("%d",&choice_grid);
-                printf("\n\n\n");
+			printf("	MENU\n");
+                	printf("=====================\n");
+                	printf("1. DEFAULT GRID 10x10\n");
+                	printf("2. CUSTOM GRID\n");
+                	printf("0. EXIT\n");
+                	printf("=====================\n");
+                	printf("GIVE A CHOICE:");
+                	scanf("%d",&choice_grid);
+                	printf("\n\n\n");
+			  
                 switch(choice_grid){
-                 case 1:{
-				  flag_default_grid = -1;
-                    do{
-						printf("	MENU\n");
-                        printf("=====================\n");
-                        printf(" DEFAULT GRID 10x10\n");
-     	                printf("=====================\n");
-     	                printf("1. 2 PLAYERS\n");
-     	                printf("2. 4 PLAYERS\n");
-     	                printf("0. EXIT\n");
-     	                printf("=====================\n");
-     	                printf("GIVE A CHOICE:");
-     	                scanf("%d",&choice_players);
-     	                printf("\n\n\n");
-     	                switch(choice_players){
-                           case 1:{
-                            symbol[0] = '#';
-                            symbol[1] = '@';
-                             do{
-						        printf("MENU\n");
-		        				printf("=====================\n");
-		        				printf(" DEFAULT GRID 10x10\n");
-		        				printf("  2 PLAYERS\n");
-		        				printf("=====================\n");
-		        				printf("1. blocks\n");
-		        				printf("2. no blocks\n");
-		        				printf("0. EXIT\n");
-		        				printf("=====================\n");
-		        				printf("GIVE A CHOICE:");
-		        				scanf("%d",&blocks);
-		        				printf("\n\n\n");
-		        				switch(blocks){
-	        					 case 1:{
-        							printf("with blocks for 2 players 10x10\n");
-        							nowPlays = 0;
-						            while(1){
-							      start_game_default(&the_player[0]);
-									  start_game_default(&the_player[1]);
+                case 1:{
+			flag_default_grid = -1;
+                    	do{
+				printf("	MENU\n");
+                       		printf("=====================\n");
+                       		printf(" DEFAULT GRID 10x10\n");
+     	                	printf("=====================\n");
+     	                	printf("1. 2 PLAYERS\n");
+     	                	printf("2. 4 PLAYERS\n");
+     	                	printf("0. EXIT\n");
+     	                	printf("=====================\n");
+     	                	printf("GIVE A CHOICE:");
+     	                	scanf("%d",&choice_players);
+     	                	printf("\n\n\n");
+     	                	switch(choice_players){
+                           	case 1:{
+                            		symbol[0] = '#';
+                            		symbol[1] = '@';
+                             		do{
+						printf("MENU\n");
+		        			printf("=====================\n");
+		        			printf(" DEFAULT GRID 10x10\n");
+		        			printf("  2 PLAYERS\n");
+		        			printf("=====================\n");
+		        			printf("1. blocks\n");
+		        			printf("2. no blocks\n");
+		        			printf("0. EXIT\n");
+		        			printf("=====================\n");
+		        			printf("GIVE A CHOICE:");
+		        			scanf("%d",&blocks);
+		        			printf("\n\n\n");
+		        			switch(blocks){
+	        				case 1:{
+        						printf("with blocks for 2 players 10x10\n");
+        						nowPlays = 0;
+							while(1){
+								start_game_default(&the_player[0]);
+								start_game_default(&the_player[1]);
 
-							      malloc_state = initialise_game(the_player, &display);
+							     	malloc_state = initialise_game(the_player, &display);
 
-							      place_player_1(&the_player[0], &display);
-						              place_player_2(&the_player[1], &display);
-				                      	      place_blokcs(&display);
-						              if(malloc_state < 0){
-						                printf("\n\nNot enough memory.\n\n");
-					                    break;
+							      	place_player_1(&the_player[0], &display);
+						              	place_player_2(&the_player[1], &display);
+				                      	     	place_blokcs(&display);
+						              	if(malloc_state < 0){
+						                	printf("\n\nNot enough memory.\n\n");
+					                break;
 				                      }
 				                      do{
 						               display_grid(&display);
 						               state = make_move(&(the_player[nowPlays]), &display, symbol[nowPlays], players_blocks[nowPlays]);
-			  	                       if (state == BLOCK_OK) players_blocks[nowPlays]--;
-			  	                       if (state == CORRECT && checkWinner(display, symbol[nowPlays], the_player[nowPlays])){
-		  		                       printf("Winner %s\n", the_player[nowPlays].name);
-	  			                       for(i = 0; i < display.n; i++){
-						                 free(display.grid_space[i]);
-						               }
-						               free(display.grid_space);											  	
-		  		                       return 1;
-				                      }
-				                      if (state != WRONG){
-						    nowPlays = (nowPlays+1) % (2 * choice_players);
-						      }
-							      if (state == EXIT) {
-								for(i = 0; i < display.n; i++){
-									    free(display.grid_space[i]);
+			  	                       		if (state == BLOCK_OK) players_blocks[nowPlays]--;
+			  	                       		if (state == CORRECT && checkWinner(display, symbol[nowPlays], the_player[nowPlays])){
+		  		                       			printf("Winner %s\n", the_player[nowPlays].name);
+	  			                       			for(i = 0; i < display.n; i++){
+						                 	free(display.grid_space[i]);
+						               		}
+						               		free(display.grid_space);											  	
+								       return 1;
+								      }
+								if (state != WRONG){
+									nowPlays = (nowPlays+1) % (2 * choice_players);
+								}
+							      	if (state == EXIT) {
+									for(i = 0; i < display.n; i++){
+										free(display.grid_space[i]);
 									}
-									free(display.grid_space);
-							      return 1;
-						 }
-						        } while((WINNER != 1) && (EXIT != -2));//As long as the player hasn't  quit (1) the game and did not win
-						        if(state == EXIT)//Player quit the game
-      						    {
-						             printf("Player %s game over \n\n", the_player[nowPlays].name);
-					                 break;
-				                }
-				                }
+										free(display.grid_space);
+								return 1;
+						      		}
+						     }while((WINNER != 1) && (EXIT != -2));//As long as the player hasn't  quit (1) the game and did not win
+						     	if(state == EXIT)//Player quit the game{
+						     		printf("Player %s game over \n\n", the_player[nowPlays].name);
+					                	break;
+				                		}
+				                	}
        							break;
 						      }
-				              case 2:{
-						       printf("without blocks for 2 players 10x10\n");
-				               nowPlays = 0;
-				               while(1){
-			                         start_game_default(&the_player[0]);
-						 start_game_default(&the_player[1]);
+				              	case 2:{
+						       	printf("without blocks for 2 players 10x10\n");
+				               		nowPlays = 0;
+				               		while(1){
+			                         		start_game_default(&the_player[0]);
+						 		start_game_default(&the_player[1]);
 
-						 malloc_state = initialise_game(the_player, &display);
+						 		malloc_state = initialise_game(the_player, &display);
 
-							     place_player_1(&the_player[0], &display);
-									 place_player_2(&the_player[1], &display);
-				                 if(malloc_state < 0){
-	                                         printf("\n\nNot enough memory.\n\n");
-                                                break;
-                                 }
-                                 do{
-                                  display_grid(&display);
-                                  state = make_move(&(the_player[nowPlays]), &display, symbol[nowPlays], players_blocks[nowPlays]);
-                                  if (state == BLOCK_OK) players_blocks[nowPlays]--;
-                                  if (state == CORRECT && checkWinner(display, symbol[nowPlays], the_player[nowPlays])){
-                                     printf("Winner %s\n", the_player[nowPlays].name);
-                                     for(i = 0; i < display.n; i++){
-		                              free(display.grid_space[i]);
-                                      }
-                                        free(display.grid_space);
-                                      return 1;
-                                  }
-						          if (state != WRONG){
-						          nowPlays = (nowPlays+1) % (2 * choice_players);
-                                 			  }
-						          if (state == EXIT){
-						           for(i = 0; i < display.n; i++){
-				                    		free(display.grid_space[i]);
-                                    			}
-					               free(display.grid_space);
-			  	                   return 1;
-                                  		 }
-                                  } while((WINNER != 1) && (EXIT != -2));//As long as the player hasn't  quit (1) the game and did not win
-                                  if(state == EXIT){//Player quit the game
-                                   printf("Player %s game over \n\n", the_player[nowPlays].name);
-                                   break;
-                                   }
-                                  }
-                                  break;
+							     	place_player_1(&the_player[0], &display);
+								place_player_2(&the_player[1], &display);
+				                 		if(malloc_state < 0){
+	                                         			printf("\n\nNot enough memory.\n\n");
+                                                			break;
+                                 				}
+                                 				do{
+                                  					display_grid(&display);
+                                  					state = make_move(&(the_player[nowPlays]), &display, symbol[nowPlays], players_blocks[nowPlays]);
+                                  					if (state == BLOCK_OK) players_blocks[nowPlays]--;
+                                  					if (state == CORRECT && checkWinner(display, symbol[nowPlays], the_player[nowPlays])){
+                                     						printf("Winner %s\n", the_player[nowPlays].name);
+                                     						for(i = 0; i < display.n; i++){
+		                              						free(display.grid_space[i]);
+                                      						}
+                                        					free(display.grid_space);
+                                      						return 1;
+                                  					}
+						          		if (state != WRONG){
+						          			nowPlays = (nowPlays+1) % (2 * choice_players);
+                                 			  		}
+						          		if (state == EXIT){
+						           			for(i = 0; i < display.n; i++){
+				                    					free(display.grid_space[i]);
+                                    						}
+					               				free(display.grid_space);
+			  	                   			return 1;
+                                  		 			}
+                                  				} while((WINNER != 1) && (EXIT != -2));//As long as the player hasn't  quit (1) the game and did not win
+                                  					if(state == EXIT){//Player quit the game
+                                   						printf("Player %s game over \n\n", the_player[nowPlays].name);
+                                   						break;
+                                  					}
+                                  				}
+                                 			 	break;
 						        }
-				              }
-						}while(blocks != 0);
+				              	}
+					}while(blocks != 0);
                        			break;
 				   }
                    		case 2:{
@@ -230,206 +230,204 @@ int main(void)
    				        symbol[1] = '*';
         				symbol[2] = '@';
    				        symbol[3] = '&';
-						do{
-						 printf("MENU\n");
-  				         printf("=====================\n");
-                         printf(" DEFAULT GRID 10x10\n");
-                         printf("  4 PLAYERS\n");
-                         printf("=====================\n");
-                         printf("1. blocks\n");
-                         printf("2. no blocks\n");
-                         printf("0. EXIT\n");
-                         printf("=====================\n");
-                         printf("GIVE A CHOICE:");
-                         scanf("%d",&blocks);
-                         printf("\n\n\n");
+					do{
+						printf("MENU\n");
+  				         	printf("=====================\n");
+                         			printf(" DEFAULT GRID 10x10\n");
+                         			printf("  4 PLAYERS\n");
+                         			printf("=====================\n");
+                         			printf("1. blocks\n");
+                         			printf("2. no blocks\n");
+                         			printf("0. EXIT\n");
+                         			printf("=====================\n");
+                         			printf("GIVE A CHOICE:");
+                         			scanf("%d",&blocks);
+                         			printf("\n\n\n");
     			
-                         switch(blocks){
-                           case 1:{
-							printf(" with blocks for 4 players 10x10\n");
-							nowPlays = 0;
-							while(1){
-							start_game_default(&the_player[0]);
-							start_game_default(&the_player[1]);
-							start_game_default(&the_player[2]);
-							start_game_default(&the_player[3]);
+                         			switch(blocks){
+                           				case 1:{
+								printf(" with blocks for 4 players 10x10\n");
+								nowPlays = 0;
+								while(1){
+									start_game_default(&the_player[0]);
+									start_game_default(&the_player[1]);
+									start_game_default(&the_player[2]);
+									start_game_default(&the_player[3]);
 																							
-							malloc_state = initialise_game(the_player, &display);
+									malloc_state = initialise_game(the_player, &display);
 																							
-							place_player_1(&the_player[0], &display);
-							place_player_2(&the_player[1], &display);
-							place_player_3(&the_player[2], &display);
-							place_player_4(&the_player[3], &display);
-							place_blokcs(&display);
-							if(malloc_state < 0){
-                             				 printf("\n\nNot enough memory.\n\n");
-							  break;
-							}
-							do{
-						     display_grid(&display);
-					         state = make_move(&(the_player[nowPlays]), &display, symbol[nowPlays], players_blocks[nowPlays]);
-				  	         if (state == BLOCK_OK) players_blocks[nowPlays]--;
-				  	         if (state == CORRECT && checkWinner(display, symbol[nowPlays], the_player[nowPlays])){
-			  		           printf("Winner %s\n", the_player[nowPlays].name);
-                               for(i = 0; i < display.n; i++){
-                                     free(display.grid_space[i]);
-							   }
-							   free(display.grid_space);
-						  		 return 1;
-					         }
-						    if (state != WRONG){
-							  nowPlays = (nowPlays+1) % (2 * choice_players);
-							}
-						    if (state == EXIT) {
-							  for(i = 0; i < display.n; i++){
-									free(display.grid_space[i]);
-							  }
-							   free(display.grid_space);
-																							  	
-					  		 return 1;
-							}
-				} while((WINNER != 1) && (EXIT != -2));//As long as the player hasn't  quit (1) the game and did not win
-			    if(state == EXIT){//Player quit the game
-				  printf("Player %s game over \n\n", the_player[nowPlays].name);
-				  break;
-				}
-	           }
-	           break;
-	          }
-        case 2:{
-				printf("without blocks for 4 players 10x10\n");
-				nowPlays = 0;
-				while(1){
-				start_game_default(&the_player[0]);
-				start_game_default(&the_player[1]);
-				start_game_default(&the_player[2]);
-				start_game_default(&the_player[3]);
+									place_player_1(&the_player[0], &display);
+									place_player_2(&the_player[1], &display);
+									place_player_3(&the_player[2], &display);
+									place_player_4(&the_player[3], &display);
+									place_blokcs(&display);
+									if(malloc_state < 0){
+                             				 			printf("\n\nNot enough memory.\n\n");
+							  			break;
+									}
+									do{
+						     				display_grid(&display);
+					         				state = make_move(&(the_player[nowPlays]), &display, symbol[nowPlays], players_blocks[nowPlays]);
+				  	         				if (state == BLOCK_OK) players_blocks[nowPlays]--;
+				  	         				if (state == CORRECT && checkWinner(display, symbol[nowPlays], the_player[nowPlays])){
+			  		           					printf("Winner %s\n", the_player[nowPlays].name);
+										       	for(i = 0; i < display.n; i++){
+											     free(display.grid_space[i]);
+							   				}
+							   				free(display.grid_space);
+						  		 			return 1;
+					         				}				
+										if (state != WRONG){
+											nowPlays = (nowPlays+1) % (2 * choice_players);
+										}
+						    				if (state == EXIT) {
+							  				for(i = 0; i < display.n; i++){
+												free(display.grid_space[i]);
+							  				}
+							   				free(display.grid_space);														  	
+					  		 			return 1;
+										}
+									} while((WINNER != 1) && (EXIT != -2));//As long as the player hasn't  quit (1) the game and did not win
+			    						if(state == EXIT){//Player quit the game
+				  						printf("Player %s game over \n\n", the_player[nowPlays].name);
+				  						break;
+									}
+	           						}
+	           						break;
+	          					}
+        						case 2:{
+								printf("without blocks for 4 players 10x10\n");
+								nowPlays = 0;
+								while(1){
+									start_game_default(&the_player[0]);
+									start_game_default(&the_player[1]);
+									start_game_default(&the_player[2]);
+									start_game_default(&the_player[3]);
 																							
-				malloc_state = initialise_game(the_player, &display);
-																							
-				place_player_1(&the_player[0], &display);
-				place_player_2(&the_player[1], &display);
-				place_player_3(&the_player[2], &display);
-				place_player_4(&the_player[3], &display);
-				if(malloc_state < 0){
-				 printf("\n\nNot enough memory.\n\n");
-                 break;
-				}
-				do{
-				 display_grid(&display);
-                 state = make_move(&(the_player[nowPlays]), &display, symbol[nowPlays], players_blocks[nowPlays]);
-		  	     if (state == BLOCK_OK) players_blocks[nowPlays]--;
-		  	     if (state == CORRECT && checkWinner(display, symbol[nowPlays], the_player[nowPlays])){
-	  		       printf("Winner %s\n", the_player[nowPlays].name);
-                   for(i = 0; i < display.n; i++){
-					free(display.grid_space[i]);
-				   }
-				   free(display.grid_space);
-	  		      return 1;
-			     }
-				 if (state != WRONG){
-					nowPlays = (nowPlays+1) % (2 * choice_players);
-				 }
-				 if (state == EXIT) {
-				  for(i = 0; i < display.n; i++){
-				   free(display.grid_space[i]);
-				  }
-				  free(display.grid_space);
-		  	     return 1;
-				}
-                   } while((WINNER != 1) && (EXIT != -2));//As long as the player hasn't  quit (1) the game did not win
-        	           if(state == EXIT){//Player quit the game
-                         printf("Player %s game over \n\n", the_player[nowPlays].name);
-        				 break;
-                    }
-    	           }
-                   break;
-                 }
-               }
-    	     }while(blocks != 0);
-               break;
-    	    }
-           }
-         }while(choice_players != 0);
+									malloc_state = initialise_game(the_player, &display);
+
+									place_player_1(&the_player[0], &display);
+									place_player_2(&the_player[1], &display);
+									place_player_3(&the_player[2], &display);
+									place_player_4(&the_player[3], &display);
+									if(malloc_state < 0){
+										 printf("\n\nNot enough memory.\n\n");
+									break;
+									}
+									do{
+				 						display_grid(&display);
+                 								state = make_move(&(the_player[nowPlays]), &display, symbol[nowPlays], players_blocks[nowPlays]);
+										if (state == BLOCK_OK) players_blocks[nowPlays]--;
+										if (state == CORRECT && checkWinner(display, symbol[nowPlays], the_player[nowPlays])){
+	  		       								printf("Winner %s\n", the_player[nowPlays].name);
+											   for(i = 0; i < display.n; i++){
+												free(display.grid_space[i]);
+											   }
+											   free(display.grid_space);
+											return 1;
+			     							}
+										if (state != WRONG){
+											nowPlays = (nowPlays+1) % (2 * choice_players);
+										}
+										if (state == EXIT) {
+										  	for(i = 0; i < display.n; i++){
+											  	free(display.grid_space[i]);
+				  							}
+				  							free(display.grid_space);
+				     						return 1;
+										}
+                  							 } while((WINNER != 1) && (EXIT != -2));//As long as the player hasn't  quit (1) the game did not win
+        	           							if(state == EXIT){//Player quit the game
+                        								printf("Player %s game over \n\n", the_player[nowPlays].name);
+        				 					break;
+                    								}
+								  }
+                  					    break;
+                				 	}
+               					}
+    	     				}while(blocks != 0);
+              			break;
+    	    			}
+           		}
+         	}while(choice_players != 0);
     	flag_default_grid = 0;
        }
 	case 2:{
-	  do{
-	  printf("MENU\n");
-      printf("=====================\n");
-      printf("1. 2 players\n");
-      printf("2. 4 players\n");
-      printf("0. EXIT\n");
-      printf("=====================\n");
-      printf("GIVE A CHOICE:");
-      scanf("%d",&choice_players);
-      printf("\n\n\n");
-      switch(choice_players){
-     	case 1:{
-   			symbol[0] = '#';
-   			symbol[1] = '@';
-   			do{
-			  printf("MENU\n");
-              printf("=====================\n");
-			  printf(" CUSTOM GRID\n");
-			  printf("  2 PLAYERS\n");
-			  printf("=====================\n");
-			  printf("1. blocks\n");
-			  printf("2. no blocks\n");
-			  printf("0. EXIT\n");
-			  printf("=====================\n");
-			  printf("GIVE A CHOICE:");
-			  scanf("%d",&blocks);
-			  printf("\n\n\n");
-			  switch(blocks){
-			   case 1:{
-			     printf(" with blocks for players custom grid\n");
-                 nowPlays = 0;
-                 start_game(&display);
-                 while(1){	
-					start_game_default(&the_player[0]);
-					start_game_default(&the_player[1]);
-					malloc_state = initialise_game(the_player, &display);
+		do{
+			printf("MENU\n");
+			printf("=====================\n");
+			printf("1. 2 players\n");
+			printf("2. 4 players\n");
+			printf("0. EXIT\n");
+			printf("=====================\n");
+			printf("GIVE A CHOICE:");
+			scanf("%d",&choice_players);
+			printf("\n\n\n");
+      			switch(choice_players){
+			case 1:{
+				symbol[0] = '#';
+				symbol[1] = '@';
+   				do{
+			  		printf("MENU\n");
+              				printf("=====================\n");
+					printf(" CUSTOM GRID\n");
+					printf("  2 PLAYERS\n");
+					printf("=====================\n");
+					printf("1. blocks\n");
+					printf("2. no blocks\n");
+					printf("0. EXIT\n");
+					printf("=====================\n");
+					printf("GIVE A CHOICE:");
+					scanf("%d",&blocks);
+					printf("\n\n\n");
+					switch(blocks){
+			   			case 1:{
+					     		printf(" with blocks for players custom grid\n");
+							nowPlays = 0;
+							start_game(&display);
+							while(1){	
+								start_game_default(&the_player[0]);
+								start_game_default(&the_player[1]);
+								malloc_state = initialise_game(the_player, &display);
 																							
-					place_player_1(&the_player[0], &display);
-					place_player_2(&the_player[1], &display);
-					place_blokcs(&display);
-					if(malloc_state < 0){
-					 printf("\n\nNot enough memory.\n\n");
-					 break;
-					}	
-					do{
-					 display_grid(&display);
-					 state = make_move(&(the_player[nowPlays]), &display, symbol[nowPlays], players_blocks[nowPlays]);
-			  	     if (state == BLOCK_OK) players_blocks[nowPlays]--;
-			  	     if (state == CORRECT && checkWinner(display, symbol[nowPlays], the_player[nowPlays])){
-                       			printf("Winner %s\n", the_player[nowPlays].name);
-                      			 for(i = 0; i < display.n; i++){
-					     free(display.grid_space[i]);
-						}
-					   free(display.grid_space);
-																							  	
-		  		    return 1;
-				    }
-					if (state != WRONG){
-					   nowPlays = (nowPlays+1) % (2 * choice_players);
-					}
-					if (state == EXIT){
-					 for(i = 0; i < display.n; i++){
-					   free(display.grid_space[i]);
-					 }
-					 free(display.grid_space);
-			  	    return 1;
-					}
-					} while((WINNER != 1) && (EXIT != -2));//As long as the player hasn't  quit (1) the game and did not win
-					if(state == EXIT){//Player quit the game
-                     printf("Player %s game over \n\n", the_player[nowPlays].name);
-                     break;
-			        }
-                  }
-		  	     break;
-	            }
-			    case 2:{
+								place_player_1(&the_player[0], &display);
+								place_player_2(&the_player[1], &display);
+								place_blokcs(&display);
+								if(malloc_state < 0){
+									 printf("\n\nNot enough memory.\n\n");
+									 break;
+								}	
+								do{
+					 				display_grid(&display);
+					 				state = make_move(&(the_player[nowPlays]), &display, symbol[nowPlays], players_blocks[nowPlays]);
+									if (state == BLOCK_OK) players_blocks[nowPlays]--;
+									if (state == CORRECT && checkWinner(display, symbol[nowPlays], the_player[nowPlays])){
+                       								printf("Winner %s\n", the_player[nowPlays].name);
+										for(i = 0; i < display.n; i++){
+										     free(display.grid_space[i]);
+										}
+					   					free(display.grid_space);													  	
+		  		    					return 1;
+				    					}
+									if (state != WRONG){
+									   nowPlays = (nowPlays+1) % (2 * choice_players);
+									}
+									if (state == EXIT){
+										 for(i = 0; i < display.n; i++){
+											free(display.grid_space[i]);
+										}
+										free(display.grid_space);
+			  	    					return 1;
+									}
+								} while((WINNER != 1) && (EXIT != -2));//As long as the player hasn't  quit (1) the game and did not win
+									if(state == EXIT){//Player quit the game
+									     printf("Player %s game over \n\n", the_player[nowPlays].name);
+									     break;
+			       						}
+                  					}
+		  	    			 break;
+	            		}
+			    	case 2:{
 					printf("without blocks for 2 players custom grid\n");
 					nowPlays = 0;
 					start_game(&display);
@@ -443,189 +441,184 @@ int main(void)
 					  if(malloc_state < 0){
 							printf("\n\nNot enough memory.\n\n");
 							break;
-				      }	
+				      	  }	
 					  do{
 																								
-					  display_grid(&display);
-					  state = make_move(&(the_player[nowPlays]), &display, symbol[nowPlays], players_blocks[nowPlays]);
-				  	  if (state == BLOCK_OK) players_blocks[nowPlays]--;
-				  	  if (state == CORRECT && checkWinner(display, symbol[nowPlays], the_player[nowPlays])){
+						  display_grid(&display);
+						  state = make_move(&(the_player[nowPlays]), &display, symbol[nowPlays], players_blocks[nowPlays]);
+						  if (state == BLOCK_OK) players_blocks[nowPlays]--;
+						  if (state == CORRECT && checkWinner(display, symbol[nowPlays], the_player[nowPlays])){
 					  		printf("Winner %s\n", the_player[nowPlays].name);
-				  		    for(i = 0; i < display.n; i++){
-							  free(display.grid_space[i]);
+							for(i = 0; i < display.n; i++){
+								free(display.grid_space[i]);
 							}
-					        free(display.grid_space);
-																							  	
-			  		      return 1;
-					     }																						
-					 if (state != WRONG){ 
-						nowPlays = (nowPlays+1) % (2 * choice_players);
-					 }
-					 if (state == EXIT){
-						for(i = 0; i < display.n; i++){
-						  free(display.grid_space[i]);
+							free(display.grid_space);																	  	
+			  		      		return 1;
+					     	 }																						
+						 if (state != WRONG){ 
+							nowPlays = (nowPlays+1) % (2 * choice_players);
+						 }
+						 if (state == EXIT){
+							for(i = 0; i < display.n; i++){
+								free(display.grid_space[i]);
+							}
+					   		free(display.grid_space);																		  	
+	  			      		return 1;
 						}
-					   free(display.grid_space);
-																							  	
-	  			      return 1;
-					}
-					} while((WINNER != 1) && (EXIT != -2));//As long as the player hasn't  quit (1) the game and did not win
-					if(state == EXIT){//Player quit the game{
-					  printf("Player %s game over \n\n", the_player[nowPlays].name);
-					  break;
-					}
-			       }
-					break;
-			      }
-			     }
-			    }while(blocks != 0);
-  			    break;
-			   }
-	case 2:{
-	 symbol[0] = '#';
-	 symbol[1] = '*';
-	 symbol[2] = '@';
-	 symbol[3] = '&';
-     do{
-		printf("MENU\n");
-	    printf("=====================\n");
-        printf(" CUSTOM GRID\n");
-   		printf("  4 PLAYERS\n");
-   		printf("=====================\n");
-   		printf("1. blocks\n");
-		printf("2. no blocks\n");
-		printf("0. EXIT\n");
-		printf("=====================\n");
-		printf("GIVE A CHOICE:");
-		scanf("%d",&blocks);
-		printf("\n\n\n");
-		switch(blocks){
-		 case 1:{
-			printf(" with blocks for 4 players custom grid\n");
-			nowPlays = 0;
-			start_game(&display);
-			while(1){
-																							
-			 start_game_default(&the_player[0]);
-			 start_game_default(&the_player[1]);
-			 start_game_default(&the_player[2]);
-			 start_game_default(&the_player[3]);
-																							
-			 malloc_state = initialise_game(the_player, &display);
-																							
-			 place_player_1(&the_player[0], &display);
-			 place_player_2(&the_player[1], &display);
-			 place_player_3(&the_player[2], &display);
-			 place_player_4(&the_player[3], &display);
-			 place_blokcs(&display);
-			 if(malloc_state < 0){
-				printf("\n\nNot enough memory.\n\n");
+					}while((WINNER != 1) && (EXIT != -2));//As long as the player hasn't  quit (1) the game and did not win
+						if(state == EXIT){//Player quit the game{
+						  printf("Player %s game over \n\n", the_player[nowPlays].name);
+						  break;
+						}
+			       		}
 				break;
-			 }
-			 do{
-				display_grid(&display);
-				state = make_move(&(the_player[nowPlays]), &display, symbol[nowPlays], players_blocks[nowPlays]);
-                if (state == BLOCK_OK) players_blocks[nowPlays]--;
-	  	        if (state == CORRECT && checkWinner(display, symbol[nowPlays], the_player[nowPlays]))
-            {
-      		printf("Winner %s\n", the_player[nowPlays].name);
-  		    for(i = 0; i < display.n; i++){
-				free(display.grid_space[i]);
+			   }
 			}
-			free(display.grid_space);
- 		   return 1;
-	      }
-		  if (state != WRONG) {
-			nowPlays = (nowPlays+1) % (2 * choice_players);
-		  }
-		  if (state == EXIT) {
-				for(i = 0; i < display.n; i++){
-				 free(display.grid_space[i]);
-				}
-			free(display.grid_space);
-  	      return 1;
-		 }
-		 } while((WINNER != 1) && (EXIT != -2));//As long as the player hasn't  quit (1) the game and did not win
-		     if(state == EXIT){//Player quit the game
-              printf("Player %s game over \n\n", the_player[nowPlays].name);
-			  break;
-		    }
-		}
-	break;
-   }
-  case 2:{
-		printf("without blocks for 4 players custom grid\n");
-		nowPlays = 0;
-		start_game(&display);
-		while(1){
-		start_game_default(&the_player[0]);
-		start_game_default(&the_player[1]);
-		start_game_default(&the_player[2]);
-		start_game_default(&the_player[3]);
+		}while(blocks != 0);
+  	break;
+	}
+	case 2:{
+		symbol[0] = '#';
+		symbol[1] = '*';
+		symbol[2] = '@';
+		symbol[3] = '&';
+    		do{
+			printf("MENU\n");
+	    		printf("=====================\n");
+        		printf(" CUSTOM GRID\n");
+   			printf("  4 PLAYERS\n");
+   			printf("=====================\n");
+   			printf("1. blocks\n");
+			printf("2. no blocks\n");
+			printf("0. EXIT\n");
+			printf("=====================\n");
+			printf("GIVE A CHOICE:");
+			scanf("%d",&blocks);
+			printf("\n\n\n");
+			switch(blocks){
+		 		case 1:{
+					printf(" with blocks for 4 players custom grid\n");
+					nowPlays = 0;
+					start_game(&display);
+					while(1){
 																							
-		malloc_state = initialise_game(the_player, &display);
-																							
-		place_player_1(&the_player[0], &display);
-		place_player_2(&the_player[1], &display);
-		place_player_3(&the_player[2], &display);
-		place_player_4(&the_player[3], &display);
-																							
-		if(malloc_state < 0){
-		  printf("\n\nNot enough memory.\n\n");
-	      break;
-		}
-		do{
-		 display_grid(&display);
-		 state = make_move(&(the_player[nowPlays]), &display, symbol[nowPlays], players_blocks[nowPlays]);
-  	     if (state == BLOCK_OK) players_blocks[nowPlays]--;
-  	     if (state == CORRECT && checkWinner(display, symbol[nowPlays], the_player[nowPlays])){
- 		   printf("Winner %s\n", the_player[nowPlays].name);
- 		   for(i = 0; i < display.n; i++){
-			free(display.grid_space[i]);
-		   }
-		  free(display.grid_space);
- 		return 1;
-       }
-       if (state != WRONG){
-			nowPlays = (nowPlays+1) % (2 * choice_players);
-	   }
-	   if (state == EXIT){
-				for(i = 0; i < display.n; i++){
-				      free(display.grid_space[i]);
-				}
-				free(display.grid_space);
-	 	return 1;
-		}
-		} while((WINNER != 1) && (EXIT != -2));//As long as the player hasn't  quit (1) the game and did not win
-		if(state == EXIT){//Player quit the game
-		         printf("Player %s game over \n\n", the_player[nowPlays].name);
-		         break;
-        		}
-        	   }
-                   break;
-            	 }
-            	}
-               }while(blocks !=0);
-            	break;	
-               }
-              }
-            }while(choice_players != 0);
-        	break;
-           }
-          }
-         }while(choice_grid != 0);
-        break;
-        }
-	    case 0:{
-         // to normal exit the game
-	     return 0;
-	     }
-      }
-	}while(choice != 0);
+						 start_game_default(&the_player[0]);
+						 start_game_default(&the_player[1]);
+						 start_game_default(&the_player[2]);
+						 start_game_default(&the_player[3]);
 
-	//free memory
-	for(i = 0; i < display.n; i++)
-	{
+						 malloc_state = initialise_game(the_player, &display);
+
+						 place_player_1(&the_player[0], &display);
+						 place_player_2(&the_player[1], &display);
+						 place_player_3(&the_player[2], &display);
+						 place_player_4(&the_player[3], &display);
+						 place_blokcs(&display);
+							 if(malloc_state < 0){
+								printf("\n\nNot enough memory.\n\n");
+								break;
+							 }
+			 				 do{
+								display_grid(&display);
+								state = make_move(&(the_player[nowPlays]), &display, symbol[nowPlays], players_blocks[nowPlays]);
+                						if (state == BLOCK_OK) players_blocks[nowPlays]--;
+	  	        					if (state == CORRECT && checkWinner(display, symbol[nowPlays], the_player[nowPlays])){
+      									printf("Winner %s\n", the_player[nowPlays].name);
+									for(i = 0; i < display.n; i++){
+										free(display.grid_space[i]);
+									}
+									free(display.grid_space);
+ 		   						return 1;
+	      							}
+								if (state != WRONG) {
+									nowPlays = (nowPlays+1) % (2 * choice_players);
+								}
+								if (state == EXIT) {
+									for(i = 0; i < display.n; i++){
+				 						free(display.grid_space[i]);
+									}
+									free(display.grid_space);
+  	     							return 1;
+		 						}
+		 					} while((WINNER != 1) && (EXIT != -2));//As long as the player hasn't  quit (1) the game and did not win
+							     if(state == EXIT){//Player quit the game
+									printf("Player %s game over \n\n", the_player[nowPlays].name);
+			 					 	break;
+		    					     }
+					}
+				break;
+   			}
+  			case 2:{
+				printf("without blocks for 4 players custom grid\n");
+				nowPlays = 0;
+				start_game(&display);
+				while(1){
+					start_game_default(&the_player[0]);
+					start_game_default(&the_player[1]);
+					start_game_default(&the_player[2]);
+					start_game_default(&the_player[3]);
+																							
+					malloc_state = initialise_game(the_player, &display);
+
+					place_player_1(&the_player[0], &display);
+					place_player_2(&the_player[1], &display);
+					place_player_3(&the_player[2], &display);
+					place_player_4(&the_player[3], &display);
+																							
+					if(malloc_state < 0){
+		  				printf("\n\nNot enough memory.\n\n");
+	      					break;
+					}
+					do{
+						 display_grid(&display);
+						 state = make_move(&(the_player[nowPlays]), &display, symbol[nowPlays], players_blocks[nowPlays]);
+						 if (state == BLOCK_OK) players_blocks[nowPlays]--;
+						 if (state == CORRECT && checkWinner(display, symbol[nowPlays], the_player[nowPlays])){
+							   printf("Winner %s\n", the_player[nowPlays].name);
+							   for(i = 0; i < display.n; i++){
+								free(display.grid_space[i]);
+							   }
+		  					   free(display.grid_space);
+ 						return 1;
+     						}
+					        if (state != WRONG){
+							nowPlays = (nowPlays+1) % (2 * choice_players);
+	   					}
+	   					if (state == EXIT){
+							for(i = 0; i < display.n; i++){
+							      free(display.grid_space[i]);
+							}
+							free(display.grid_space);
+	 					return 1;
+						}
+					} while((WINNER != 1) && (EXIT != -2));//As long as the player hasn't  quit (1) the game and did not win
+						if(state == EXIT){//Player quit the game
+							 printf("Player %s game over \n\n", the_player[nowPlays].name);
+		         	 break;
+        		        }
+        	   	       }
+                         break;
+                       }
+                     }
+                  }while(blocks !=0);
+                break;	
+               }
+             }
+           }while(choice_players != 0);
+          break;
+         }
+        }
+       }while(choice_grid != 0);
+      break;
+     }
+    case 0:{
+    // to normal exit the game
+    return 0;
+   }
+  }
+ }while(choice != 0);
+//free memory
+	for(i = 0; i < display.n; i++){
 		free(display.grid_space[i]);
 	}
 	free(display.grid_space);
